@@ -1,15 +1,19 @@
 import {useState, useEffect} from 'react';
+import Weather from './Weather';
 
 
-const useCurrentLocation = () => {
+const CurrentLocation = () => {
   const [location, setLocation] = useState();
   const [error, setError] = useState();
 
   const handleSuccess = position => {
-    const {latitude, longitide } = position.coords;
+    const {latitude, longitude } = position.coords;
 
-    setLocation({latitude, longitide});
-  };
+    setLocation(
+      [latitude,
+      longitude]);
+    console.log(latitude, longitude)
+    };
 
   const handleError = error => {
     setError(error.message);
@@ -18,15 +22,20 @@ const useCurrentLocation = () => {
   useEffect(() => {
     const { geolocation } = navigator;
     if(!geolocation){
-      setError('Gelocation is not support.');
+      setError('Gelocation is not supported.');
       return;
       }
 
       geolocation.getCurrentPosition(handleSuccess, handleError);
     }, []);
 
-  return {location, error}
+  return (
+    <>
+      {location} {error}
+      <Weather />
+    </>
+  )
 };
 
-export default useCurrentLocation;
+export default CurrentLocation;
 
