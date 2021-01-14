@@ -2,25 +2,24 @@ import React, {useState, useEffect} from 'react';
 import Weather from './Weather';
 
 const Location = () => {
-  const [location, setLocation] = useState('Portland');
+  const [location, setLocation] = useState();
+  const [error, setError] = useState();
+
+  useEffect(() =>{
+    if(!navigator.geolocation){
+      setError('Gelocation is not support.');
+      return;
+    }
+    }
+  })
+
 return(
   <div>
-  <div className="ui form">
-    <div className="field">
-      <label>
-        <input
-          type="text"
-          className="input"
-          value={location}
-          onChange={e => setLocation(e.target.value)}
-        />
-      </label>
+    <div>
+        <button
+          type="button">Show My Location</button>
     </div>
-    {location}
-  </div>
-    < Weather
-    location={location}
-    />
+    < Weather/>
   </div>
 )
 }
