@@ -9,11 +9,8 @@ const CurrentLocation = () => {
   const handleSuccess = position => {
     const {latitude, longitude } = position.coords;
 
-    setLocation(
-      [latitude,
-      longitude]);
-    console.log(latitude, longitude)
-    };
+    setLocation([latitude,longitude]);
+  };
 
   const handleError = error => {
     setError(error.message);
@@ -31,7 +28,7 @@ const CurrentLocation = () => {
 
   return (
     <>
-      {location} {error}
+      {location}{error}
       <Weather location={location} />
     </>
   )
