@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react';
 
-const Weather = () => {
+const Weather = ({location}) => {
+
   return(
     <div className="">
-      
+
     </div>
   )
 

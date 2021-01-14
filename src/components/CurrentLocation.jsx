@@ -32,7 +32,7 @@ const CurrentLocation = () => {
   return (
     <>
       {location} {error}
-      <Weather />
+      <Weather location={location} />
     </>
   )
 };
