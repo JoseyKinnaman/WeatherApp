@@ -3,8 +3,8 @@ import './Weather.css';
 import axios from 'axios';
 
 const Weather = ({location, error}) => {
-  const [loading, setLoading] = useState(false)
-  const [weather, setWeather] = useState("sunny")
+  const [loading, setLoading] = useState(true)
+  const [weather, setWeather] = useState([])
   const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
 
   useEffect(() => {
