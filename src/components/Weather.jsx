@@ -15,7 +15,7 @@ const Weather = ({location, error}) => {
       const lat = location[0];
       const lon = location[1];
     const getWeather = async () => {
-      const {data} = await axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`)
+      const {data} = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`)
       let temp = data.main.temp;
       let myLocation = data.name;
       let weather = data.weather[0].description
@@ -33,7 +33,7 @@ const Weather = ({location, error}) => {
       {loading
       ? <div className="ui active inverted dimmer">
           <div className="ui text loader">
-            <p>Click the Current Weather button to see weather in your area!</p>
+            <p>Loading</p>
           </div>
         </div>
       :
