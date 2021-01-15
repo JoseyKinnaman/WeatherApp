@@ -1,18 +1,12 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import Weather from './Weather';
 
 
 const CurrentLocation = () => {
   const [location, setLocation] = useState();
-  const [, setError] = useState();
+  const [error, setError] = useState();
+  const [showWeather, setShowWeather] = useState(false);
 
-  const handleSuccess = position => {
-    const {latitude, longitude } = position.coords
-    setLocation([latitude,longitude]);
-  };
-  const handleError = error => {
-    setError(error.message);
-  };
   const getLocation = async () => {
     const { geolocation } = navigator;
     if(!geolocation){
@@ -22,10 +16,30 @@ const CurrentLocation = () => {
       geolocation.getCurrentPosition(handleSuccess,handleError);
     }
 
+    const handleSuccess = position => {
+      const {latitude, longitude } = position.coords
+      setLocation([latitude,longitude]);
+      setShowWeather(true);
+    };
+    const handleError = error => {
+      setError(error.message);
+    };
+
   return (
     <>
-      <button onClick={getLocation} className="ui button">Current Weather</button>
-      <Weather location={location} />
+      <button
+        onClick={getLocation}
+        className="ui primary button"
+      >
+        Current Weather
+      </button>
+      { showWeather
+        ?
+        <Weather
+        location={location}
+        error={error}
+      />
+      : null}
     </>
   )
 };

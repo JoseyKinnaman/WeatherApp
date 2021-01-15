@@ -1,14 +1,14 @@
 import React, {useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Weather = ({location}) => {
+const Weather = ({location, error}) => {
   const [loading, setLoading] = useState(false)
   const [weather, setWeather] = useState("sunny")
 
   useEffect(() => {
     if(!location){
       setLoading(true);
-      return;
+      return error;
       }
       const lat = location[0];
       const lon = location[1];
@@ -22,7 +22,7 @@ const Weather = ({location}) => {
       setWeather(currentWeather)
     }
     getWeather()
-  },[location])
+  },[location, error])
 
   return(
     <div className="ui segment">
