@@ -1,4 +1,5 @@
 import React, {useEffect, useState } from 'react';
+import './Weather.css';
 import axios from 'axios';
 
 const Weather = ({location, error}) => {
@@ -25,8 +26,8 @@ const Weather = ({location, error}) => {
   },[location, error])
 
   return(
-    <div className="ui segment">
-      <h3>Weather by Area</h3>
+    <div id ="main" className="ui segment">
+      <h2>Weather by Area</h2>
       {loading
       ? <div className="ui active inverted dimmer">
           <div className="ui text loader">
@@ -36,8 +37,9 @@ const Weather = ({location, error}) => {
       :
       <div className="ui segment">
         <h3>{weather[1]}</h3>
-        <h4>Temp: {weather[0]} f</h4>
+        <h4>Temp: {weather[0]}°F</h4>
         <h5>{weather[2]}</h5>
+        {error}
       </div>
       }
     </div>

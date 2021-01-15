@@ -9,6 +9,7 @@ const CurrentLocation = () => {
 
   const getLocation = async () => {
     const { geolocation } = navigator;
+
     if(!geolocation){
       setError('Gelocation is not supported.');
       return;
