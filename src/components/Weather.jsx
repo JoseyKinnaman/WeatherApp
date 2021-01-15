@@ -14,8 +14,9 @@ const Weather = ({location}) => {
       const lon = location[1];
     const getWeather = async () => {
       const {data} = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=82f159dc001a7193a1e47a71b24e4e30`)
-      console.log(data)
+      console.log(data.weather[0].description)
       setLoading(false)
+      setWeather(data.weather[0].description)
     }
     getWeather()
   },[location])
@@ -29,7 +30,7 @@ const Weather = ({location}) => {
       </div>
       :
       <div className="">
-        <h4>Hello</h4>
+        <h4>{weather}</h4>
       </div>
       }
     </div>
