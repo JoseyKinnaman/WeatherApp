@@ -5,6 +5,7 @@ import axios from 'axios';
 const Weather = ({location, error}) => {
   const [loading, setLoading] = useState(false)
   const [weather, setWeather] = useState("sunny")
+  const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
 
   useEffect(() => {
     if(!location){
@@ -14,7 +15,7 @@ const Weather = ({location, error}) => {
       const lat = location[0];
       const lon = location[1];
     const getWeather = async () => {
-      const {data} = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=82f159dc001a7193a1e47a71b24e4e30`)
+      const {data} = await axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`)
       let temp = data.main.temp;
       let myLocation = data.name;
       let weather = data.weather[0].description
@@ -23,7 +24,8 @@ const Weather = ({location, error}) => {
       setWeather(currentWeather)
     }
     getWeather()
-  },[location, error])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[location])
 
   return(
     <div id ="main" className="ui segment">
