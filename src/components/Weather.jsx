@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 
 const Weather = ({location}) => {
-  console.log(location)
   
 
   useEffect(() => {
@@ -10,10 +9,12 @@ const Weather = ({location}) => {
       // loading hook?
       return;
       }
+      const lat = location[0];
+      const lon = location[1];
     async function getWeather(){
-      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?${location[0]}&lon=${location[1]}&appid=${process.env.REACT_APP_API_KEY}`)
-      // const body = await response.json();
-      console.log(response)
+      const response = await fetch(`api.openweathermap.org/data/2.5/weather?lat=${lat}&${lon}&appid=${process.env.REACT_APP_API_KEY}`)
+      const body = await response.json();
+      console.log(response.json)
     }
     getWeather()
   },[location])
