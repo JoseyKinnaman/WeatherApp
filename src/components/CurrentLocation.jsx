@@ -4,31 +4,27 @@ import Weather from './Weather';
 
 const CurrentLocation = () => {
   const [location, setLocation] = useState();
-  const [error, setError] = useState();
+  const [, setError] = useState();
 
   const handleSuccess = position => {
-    const {latitude, longitude } = position.coords;
-
+    const {latitude, longitude } = position.coords
     setLocation([latitude,longitude]);
   };
-
   const handleError = error => {
     setError(error.message);
   };
-
-  useEffect(() => {
+  const getLocation = async () => {
     const { geolocation } = navigator;
     if(!geolocation){
       setError('Gelocation is not supported.');
       return;
       }
-
-      geolocation.getCurrentPosition(handleSuccess, handleError);
-    }, []);
+      geolocation.getCurrentPosition(handleSuccess,handleError);
+    }
 
   return (
     <>
-      {location}{error}
+      <button onClick={getLocation} className="ui button">Current Weather</button>
       <Weather location={location} />
     </>
   )
