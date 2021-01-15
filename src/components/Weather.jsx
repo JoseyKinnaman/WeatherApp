@@ -13,9 +13,13 @@ const Weather = ({location}) => {
       const lat = location[0];
       const lon = location[1];
     const getWeather = async () => {
-      const {data} = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=82f159dc001a7193a1e47a71b24e4e30`)
+      const {data} = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=82f159dc001a7193a1e47a71b24e4e30`)
+      let temp = data.main.temp;
+      let myLocation = data.name;
+      let weather = data.weather[0].description
+      let currentWeather = [temp, myLocation, weather]
       setLoading(false)
-      setWeather(data.weather[0].description)
+      setWeather(currentWeather)
     }
     getWeather()
   },[location])
@@ -31,7 +35,9 @@ const Weather = ({location}) => {
         </div>
       :
       <div className="ui segment">
-        <h4>{weather}</h4>
+        <h3>{weather[1]}</h3>
+        <h4>Temp: {weather[0]} f</h4>
+        <h5>{weather[2]}</h5>
       </div>
       }
     </div>
