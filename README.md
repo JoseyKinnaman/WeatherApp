@@ -6,11 +6,11 @@ January, 2021
 
 ### Description
 
-_A small app that displays weather data like weather.com that takes input from the user about their location and displays local weather in that area._
+_A small app that displays weather data like weather.com and takes input from the user about their location to display local weather in their area._
+
+To view deployed site visit here https://jovial-einstein-cd4897.netlify.app/ or ...
 
 ### Instructions for use:
-
-visit here https://jovial-einstein-cd4897.netlify.app/ or ...
 
 1. Open Terminal (macOS) or PowerShell (Windows)
 2. To download the project Directory to your desktop enter the following commands:
